@@ -2,25 +2,21 @@
 // http://codingtra.in
 // http://patreon.com/codingtrain
 // Code for: https://youtu.be/Pn1g1wjxl_0
-
-var song;
-var sliderRate;
-var sliderPan;
+let song;
 
 function setup() {
-  createCanvas(200, 200);
-  song = loadSound('rainbow.mp3', loaded);
-  song.setVolume(0.5);
-  sliderRate = createSlider(0, 1.5, 1, 0.01);
-  sliderPan = createSlider(-1, 1, 0, 0.01);
+  song = loadSound('assets/lucky_dragons_-_power_melody.mp3');
+  createCanvas(720, 200);
+  background(255, 0, 0);
 }
 
-function loaded() {
-  song.play();
-}
-
-function draw() {
-  background(random(255));
-  song.pan(sliderPan.value());
-  song.rate(sliderRate.value());
+function mousePressed() {
+  if (song.isPlaying()) {
+    // .isPlaying() returns a boolean
+    song.stop();
+    background(255, 0, 0);
+  } else {
+    song.play();
+    background(0, 255, 0);
+  }
 }
